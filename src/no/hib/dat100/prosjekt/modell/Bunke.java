@@ -6,6 +6,7 @@ package no.hib.dat100.prosjekt.modell;
  *
  */
 public class Bunke extends KortSamling {
+	// Hei Fredrik!
 	/**
 	 * Lager en tom bunke.
 	 * 
