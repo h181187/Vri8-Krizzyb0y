@@ -29,10 +29,10 @@ public class Spill {
 	 * @return referanse/peker til syd.
 	 */
 	public ISpiller getSyd() {
+
+		return syd;
 		
-		// TODO
-		
-		throw new RuntimeException("Metode getSyd ikke implementert");
+//		throw new RuntimeException("Metode getSyd ikke implementert");
 	}
 
 	/**
@@ -42,9 +42,9 @@ public class Spill {
 	 */
 	public ISpiller getNord() {
 		
-		// TODO
+		return nord;
 		
-		throw new RuntimeException("Metode getNord ikke implementert");
+//		throw new RuntimeException("Metode getNord ikke implementert");
 	}
 
 	/**
@@ -54,35 +54,38 @@ public class Spill {
 	 */
 	public Bunke getBunkeTil() {
 		
-		// TODO
+		return bunkeTil;
 		
-		throw new RuntimeException("Metode getBunkeTil ikke implementert");
+//		throw new RuntimeException("Metode getBunkeTil ikke implementert");
 	}
 
 	public Bunke getBunkeFra() {
 		
-		// TODO
+		return bunkeFra;
 		
-		throw new RuntimeException("Metode getBunkeFra ikke implementert");
+//		throw new RuntimeException("Metode getBunkeFra ikke implementert");
 	}
 
 	/**
 	 * Metoden oppretter to spillere, nord og syd. Det opprettes to bunker, fra
 	 * og til. Alle kortene legges til fra. Bunken fra stokkes. Deretter deles
 	 * det ut kort fra fra-bunken til nord og syd i henhold til regler. Til
-	 * slutt tas Â¯verste kortet fra fra-bunken og legges til til-bunken.
+	 * slutt tas øverste kortet fra fra-bunken og legges til til-bunken.
 	 * 
-	 * Nord har type RandomSpiller (som er forhÃ‚ndefinert). Syd vil til slutt vÃŠre spiller
+	 * Nord har type RandomSpiller (som er forhåndefinert). Syd vil til slutt være spiller
 	 * av en klasse laget av gruppen i oppgave 3.
 	 */
 	public void start() {
 		
 		// Hint: vurder om andre private metoder i klassen kan brukes her
-        // i tilegg til metoder pÃ¥ bunker
+        // i tilegg til metoder på bunker
 		
-		// TODO
-		
-		throw new RuntimeException("Metode start ikke implementert");
+		bunkeFra.leggTilAlle();
+		bunkeFra.stokk();
+			
+		nord.hvem();
+		syd.hvem();
+//		throw new RuntimeException("Metode start ikke implementert");
 	}
 
 	/**
@@ -93,7 +96,9 @@ public class Spill {
 
 		// Husk: Klassen Regler angir hvor mange kort hver spiller skal ha
 		
-		// TODO
+		for (int i = 0; i <;  ; i++)	{
+			
+		}
 		
 		throw new RuntimeException("Metode delutKort ikke implementert");
 	}

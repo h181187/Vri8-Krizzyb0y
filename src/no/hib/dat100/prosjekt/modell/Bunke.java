@@ -6,7 +6,6 @@ package no.hib.dat100.prosjekt.modell;
  *
  */
 public class Bunke extends KortSamling {
-	// Hei Fredrik!
 	/**
 	 * Lager en tom bunke.
 	 * 
@@ -25,11 +24,10 @@ public class Bunke extends KortSamling {
 	public Kort trekk() {
 		// Hint: se på metoder i superklassen
 		
-		// TODO
+		return super.taSiste();
 		
 		
-		
-		throw new RuntimeException("Metode trekk ikke implementert");
+//		throw new RuntimeException("Metode trekk ikke implementert");
 	}
 
 	/**
@@ -41,8 +39,8 @@ public class Bunke extends KortSamling {
 	 */
 	public Kort topp() {
 		
-		// TODO
+		return super.seSiste();
 		
-		throw new RuntimeException("Metode topp ikke implementert");
+//		throw new RuntimeException("Metode topp ikke implementert");
 	}
 }

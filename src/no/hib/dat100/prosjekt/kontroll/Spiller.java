@@ -30,9 +30,11 @@ public abstract class Spiller implements ISpiller {
 	 */
 	public Spiller() {
 
-		// TODO
+		hand = new Hand();
+		antalltrekk = 0;
+		spiller = Spillere.INGEN;
 		
-		throw new RuntimeException("Metode Spiller ikke implementert");
+//		throw new RuntimeException("Metode Spiller ikke implementert");
 	}
 
 	/**
@@ -43,85 +45,86 @@ public abstract class Spiller implements ISpiller {
 	 *            hvilken spiller det er.
 	 */
 	public Spiller(Spillere spiller) {
-		
-		// TODO
-		throw new RuntimeException("Metode Spiller ikke implementert");
+		this.spiller = spiller;
+//		throw new RuntimeException("Metode Spiller ikke implementert");
 	}
 
 	@Override
 	public int getAntallKort() {
 		
-		// TODO
+		return hand.getAntalKort();
 		
-		throw new RuntimeException("Metode getAntallKort ikke implementert");
+//		throw new RuntimeException("Metode getAntallKort ikke implementert");
 	}
 
 	@Override
 	public Hand getHand() {
 		
-		// TODO
+		return hand;
 		
-		throw new RuntimeException("Metode getHand ikke implementert");
+//		throw new RuntimeException("Metode getHand ikke implementert");
 	}
 
 	public int getAntallTrekk() {
 		
-		// TODO
+		return antalltrekk;
 		
-		throw new RuntimeException("Metode getAntallTrekk ikke implementert");
+//		throw new RuntimeException("Metode getAntallTrekk ikke implementert");
 	}
 
 	public Spillere hvem() {
 		
-		// TODO
+		return spiller;
 		
-		throw new RuntimeException("Metode hvem ikke implementert");
+//		throw new RuntimeException("Metode hvem ikke implementert");
 	}
 
 	public void setAntallTrekk(int t) {
 		
-		// TODO
+		this.antalltrekk = t;
 		
-		throw new RuntimeException("Metode setAntallTrekk ikke implementert");
+//		throw new RuntimeException("Metode setAntallTrekk ikke implementert");
 	}
 
 	@Override
 	public boolean erFerdig() {
 		
-		// TODO
-		
-		throw new RuntimeException("Metode erFerdig ikke implementert");
+		if (getAntallKort() == 0)	{
+			return true;
+		}
+		return false;
+//		throw new RuntimeException("Metode erFerdig ikke implementert");
 	}
 
 	@Override
 	public void leggTilKort(Kort kort) {
 		
-		// TODO
-		
-		throw new RuntimeException("Metode leggTilKort ikke implementert");
+		hand.leggTil(kort);		
+//		throw new RuntimeException("Metode leggTilKort ikke implementert");
 	}
 
 	@Override
 	public void fjernKort(Kort kort) {
 		
-		// TODO
+		hand.fjern(kort);
 		
-		throw new RuntimeException("Metode fjernKort ikke implementert");
+//		throw new RuntimeException("Metode fjernKort ikke implementert");
 	}
 
 	@Override
 	public void fjernAlleKort() {
 		
-		// TODO
+		hand.fjernAlle();
 		
-		throw new RuntimeException("Metode fjernAlleKort ikke implementert");
+//		throw new RuntimeException("Metode fjernAlleKort ikke implementert");
 	}
 
 	@Override
 	public void trekker(Kort kort) {
 		
-		// TODO
+		hand.leggTil(kort);
+		antalltrekk++;
 		
-		throw new RuntimeException("Metode trekker ikke implementert");
+//		throw new RuntimeException("Metode trekker ikke implementert");
 	}
 }
