@@ -7,7 +7,7 @@ import no.hib.dat100.prosjekt.modell.Kort;
 
 /**
  * Klassen har objektvariaber som er referanser til de spillerne, nord og syd
- * (type ISpiller). Den har ogsÃ‚ en bunke man deler/trekker fra og en bunke man
+ * (type ISpiller). Den har også en bunke man deler/trekker fra og en bunke man
  * spiller til.
  * 
  */
@@ -83,8 +83,11 @@ public class Spill {
 		bunkeFra.leggTilAlle();
 		bunkeFra.stokk();
 			
-		nord.hvem();
-		syd.hvem();
+		RandomSpiller nord = new RandomSpiller(Spillere.NORD);
+		RandomSpiller syd = new RandomSpiller(Spillere.SYD);
+		
+		/*nord.hvem();
+		syd.hvem();*/
 //		throw new RuntimeException("Metode start ikke implementert");
 	}
 
@@ -96,41 +99,45 @@ public class Spill {
 
 		// Husk: Klassen Regler angir hvor mange kort hver spiller skal ha
 		
-		for (int i = 0; i <;  ; i++)	{
-			
+		for (int i = 0; i <= Regler.antallKortVedStart(); i++)	{
+			nord.leggTilKort(bunkeFra.taSiste());
+			syd.leggTilKort(bunkeFra.taSiste());
 		}
 		
-		throw new RuntimeException("Metode delutKort ikke implementert");
+//		throw new RuntimeException("Metode delutKort ikke implementert");
 	}
 
 	/**
-	 * Tar Â¯verste kortet fra fra-bunken og legger dettte til til-bunken (med
-	 * billedsiden opp, men det trenger ikke gruppen tenke pÃ‚).
+	 * Tar Øverste kortet fra fra-bunken og legger dettte til til-bunken (med
+	 * billedsiden opp, men det trenger ikke gruppen tenke på).
 	 */
 	private void vendOverste() {
 		
-		// TODO
+		bunkeTil.leggTil(bunkeFra.taSiste());
 		
-		throw new RuntimeException("Metode vendOverste ikke implementert");
+//		throw new RuntimeException("Metode vendOverste ikke implementert");
 	}
 
 	/**
-	 * NÃ‚r fra-bunken blir tom, tar man vare pÃ‚ kortet pÃ‚ toppen av til-bunken.
+	 * Når fra-bunken blir tom, tar man vare på kortet på toppen av til-bunken.
 	 * Deretter legges alle den andre kortene i til-bunken over i fra-bunken.
-	 * Denne stokkes og kortet som man har tatt vare pÃ‚ legges tilbake i
-	 * til-bunken. Det vil nÃ‚r vÃŠre det eneste kortet i til-bunken.
+	 * Denne stokkes og kortet som man har tatt vare på legges tilbake i
+	 * til-bunken. Det vil når vÃŠre det eneste kortet i til-bunken.
 	 */
 	public void snuTilBunken() {
 
-		
-		// TODO
-		
-		throw new RuntimeException("Metode snuTilBunken ikke implementert");
+		Kort siste = bunkeTil.taSiste();
+		for (int i = 0; i < bunkeTil.getAntalKort(); i++){
+			bunkeFra.leggTil(bunkeTil.getSamling()[i]);
+		}
+		bunkeTil.leggTil(siste);
+		bunkeFra.stokk();
+//		throw new RuntimeException("Metode snuTilBunken ikke implementert");
 	}
 
 	/**
 	 * Trekker et kort fra fra-bunken til spilleren gitt som parameter. Om
-	 * fra-bunken er tom, mÃ‚ man "snu" til-bunken. Se info om metoden
+	 * fra-bunken er tom, må man "snu" til-bunken. Se info om metoden
 	 * snuTilBunken().
 	 * 
 	 * @param spiller
@@ -139,10 +146,13 @@ public class Spill {
 	 * @return kortet som trekkes.
 	 */
 	public Kort trekkFraBunke(ISpiller spiller) {
-
-		// TODO
-		
-		throw new RuntimeException("Metode trekkFraBunke ikke implementert");
+		if (bunkeFra.erTom()){
+			snuTilBunken();
+			return bunkeFra.taSiste();
+		}
+		return bunkeFra.taSiste();
+				
+//		throw new RuntimeException("Metode trekkFraBunke ikke implementert");
 	}
 
 	/**
@@ -152,9 +162,9 @@ public class Spill {
 	 */
 	public boolean bunketilTom() {
 		
-		// TODO
+		return bunkeTil.erTom();
 		
-		throw new RuntimeException("Metode bunkeTilTom ikke implementert");
+//		throw new RuntimeException("Metode bunkeTilTom ikke implementert");
 	}
 
 	/**
@@ -164,21 +174,21 @@ public class Spill {
 	 */
 	public boolean bunkefraTom() {
 		
-		// TODO
+		return bunkeFra.erTom();
 		
-		throw new RuntimeException("Metode bunkefraTom ikke implementert");
+//		throw new RuntimeException("Metode bunkefraTom ikke implementert");
 	}
 
 	/**
-	 * Gir antall kort nord har pÃ‚ hÃ‚nden.
+	 * Gir antall kort nord har på hånden.
 	 * 
-	 * @return antall kort nord har pÃ‚ hÃ‚nden.
+	 * @return antall kort nord har på hånden.
 	 */
 	public int antallNord() {
 		
-		// TODO
+		return nord.getAntallKort();
 		
-		throw new RuntimeException("Metode antallNord ikke implementert");
+//		throw new RuntimeException("Metode antallNord ikke implementert");
 	}
 
 	/**
@@ -188,9 +198,9 @@ public class Spill {
 	 */
 	public int antallBunkeFra() {
 		
-		// TODO
+		return bunkeFra.getAntalKort();
 		
-		throw new RuntimeException("Metode antallBunkeFra ikke implementert");
+//		throw new RuntimeException("Metode antallBunkeFra ikke implementert");
 	}
 
 	/**
@@ -200,22 +210,22 @@ public class Spill {
 	 */
 	public int antallBunkeTil() {
 		
-		// TODO
+		return bunkeTil.getAntalKort();
 		
-		throw new RuntimeException("Metode antallBunkeTil ikke implementert");
+//		throw new RuntimeException("Metode antallBunkeTil ikke implementert");
 	}
 
 	/**
-	 * Metode som leser Â¯verste kortet i til-bunken. Kortet vil fremdeles vÃŠre
-	 * Â¯verst i til-bunken etter at metoden er utfÂ¯rt.
+	 * Metode som leser øverste kortet i til-bunken. Kortet vil fremdeles være
+	 * Øverst i til-bunken etter at metoden er utført.
 	 * 
-	 * @return Â¯verste kortet i til-bunken.
+	 * @return øverste kortet i til-bunken.
 	 */
 	public Kort seOverste() {
 		
-		// TODO
+		return bunkeTil.seSiste();
 		
-		throw new RuntimeException("Metode seOverste ikke implementert");
+//		throw new RuntimeException("Metode seOverste ikke implementert");
 	}
 
 	/**
@@ -236,12 +246,12 @@ public class Spill {
 	 * @param spiller
 	 *            spiller som handle.
 	 * 
-	 * @return handlingen som skal utfÂ¯res av spillet.
+	 * @return handlingen som skal utføres av spillet.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
 		
 		// TODO
-		// Hint: bruk nesteHandling metoden pÃ¥ en spiller
+		// Hint: bruk nesteHandling metoden på en spiller
 		
 		throw new RuntimeException("Metode nesteHandling ikke implementert");
 	}
@@ -249,7 +259,7 @@ public class Spill {
 	/**
 	 * Metoden spiller et kort. Den sjekker at spiller har kortet. Dersom det er
 	 * tilfelle, fjernes kortet fra spilleren og legges til til-bunken. Metoden
-	 * nulltiller ogsÃ‚ antall ganger spilleren har trukket kort.
+	 * nulltiller også antall ganger spilleren har trukket kort.
 	 * 
 	 * @param spiller
 	 *            den som spiller.
@@ -266,7 +276,7 @@ public class Spill {
 	}
 
 	/**
-	 * Metode for Ã‚ si forbi. MÃ‚ nullstille antall ganger spilleren har trukket
+	 * Metode for å si forbi. Må nullstille antall ganger spilleren har trukket
 	 * kort.
 	 * 
 	 * @param spiller
@@ -280,13 +290,13 @@ public class Spill {
 	}
 
 	/**
-	 * Metode for Ã‚ utfÂ¯re en handling (trekke, spille, forbi). Dersom hanling
-	 * er kort, blir kortet ogsÃ‚ spilt.
+	 * Metode for å utføre en handling (trekke, spille, forbi). Dersom hanling
+	 * er kort, blir kortet også spilt.
 	 * 
 	 * @param spiller
-	 *            spiller som utfÂ¯rer handlingen.
+	 *            spiller som utfører handlingen.
 	 * @param handling
-	 *            handling som utfÂ¯res.
+	 *            handling som utføres.
 	 * 
 	 * @return kort som trekkes, kort som spilles eller null ved forbi.
 	 */
@@ -297,7 +307,7 @@ public class Spill {
 		// TODO
 		// Hint: del opp i de tre mulige handlinger og vurder 
 		// om noen andre private metoder i klassen kan brukes
-		// til Ã¥ implementere denne metoden
+		// til å implementere denne metoden
 		
 		throw new RuntimeException("Metode utforHandling ikke implementert");
 	}
@@ -308,7 +318,7 @@ public class Spill {
 	 * @param kort
 	 *            kort som spilles.
 	 * 
-	 * @return true dersom kortet er lovlig Ã‚ spille, false ellers.
+	 * @return true dersom kortet er lovlig å spille, false ellers.
 	 */
 	public boolean nedkortSyd(Kort kort) {
 		
@@ -318,9 +328,9 @@ public class Spill {
 	}
 
 	/**
-	 * ForeslÃ‚r hva syd skal spille.
+	 * Foreslår hva syd skal spille.
 	 * 
-	 * @return kort som blir foreslÃ‚tt.
+	 * @return kort som blir foreslått.
 	 */
 	public Kort foreslaaKortSyd() {
 		
