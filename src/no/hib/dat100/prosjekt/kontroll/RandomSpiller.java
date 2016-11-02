@@ -17,12 +17,12 @@ public class RandomSpiller extends Spiller {
 		// liste med kort svarende til hand for spiller
 		ArrayList<Kort> h = getHand().toArrayList();
 		
-		// lister til Ã¥ samle opp lovlige kort og Ã¥ttere for spilleren
+		// lister til å samle opp lovlige kort og åttere for spilleren
 		
 		ArrayList<Kort> lovlige = new ArrayList<Kort>();
 		ArrayList<Kort> attere = new ArrayList<Kort>();
 
-		// itererer over handen h og legg til lovlige kort i Ã¥ttere eller lovlige
+		// itererer over handen h og legg til lovlige kort i åttere eller lovlige
 		for (Kort k : h) {
 			if (Regler.kanLeggeNed(k, topp)) {
 				if (Regler.atter(k)) {
@@ -33,7 +33,7 @@ public class RandomSpiller extends Spiller {
 			}
 		}
 
-		// finn om der skal spilles fra listen av Ã¥ttere eller lovlige
+		// finn om der skal spilles fra listen av åttere eller lovlige
 		Kort kort = null;
 		ArrayList<Kort> spillFra = null;
 
@@ -57,13 +57,13 @@ public class RandomSpiller extends Spiller {
 			setAntallTrekk(0);
 		} else if (getAntallTrekk() < Regler.maksTrekk()) {
 			
-			// trekk fra bunken hvis vi ikker nÃ¥dd grensen for Ã¥ trekke
+			// trekk fra bunken hvis vi ikker nådd grensen for å trekke
 			
 			handling = new Handling(HandlingsType.TREKK, null);
 		} else {
 			
 			// ikke noe kort spiller og kan ikke trekk mer
-			// da mÃ¥ vi si forbi og nullstille antall trekk.
+			// da må vi si forbi og nullstille antall trekk.
 			
 			handling = new Handling(HandlingsType.FORBI, null);
 			setAntallTrekk(0);

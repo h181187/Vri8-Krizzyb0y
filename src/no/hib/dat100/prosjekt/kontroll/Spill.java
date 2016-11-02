@@ -146,11 +146,19 @@ public class Spill {
 	 * @return kortet som trekkes.
 	 */
 	public Kort trekkFraBunke(ISpiller spiller) {
-		if (bunkeFra.erTom()){
+		if (!bunkeFra.erTom()){
+			Kort trekk = bunkeFra.taSiste();
+			spiller.trekker(trekk);
+			return trekk;
+			
+		}	else	{
 			snuTilBunken();
-			return bunkeFra.taSiste();
+			Kort trekk = bunkeFra.trekk();
+			spiller.trekker(trekk);
+			return trekk;
+			
 		}
-		return bunkeFra.taSiste();
+		
 				
 //		throw new RuntimeException("Metode trekkFraBunke ikke implementert");
 	}
@@ -235,9 +243,10 @@ public class Spill {
 	 */
 	public ArrayList<Kort> getSydHand() {
 		
-		// TODO
+		ArrayList<Kort> sydhand = new ArrayList<Kort>();
+		return sydhand;
 		
-		throw new RuntimeException("Metode getSydHand ikke implementert");
+//		throw new RuntimeException("Metode getSydHand ikke implementert");
 	}
 
 	/**
@@ -250,16 +259,17 @@ public class Spill {
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
 		
-		// TODO
+		return spiller.nesteHandling(bunkeTil.topp());
+		
 		// Hint: bruk nesteHandling metoden på en spiller
 		
-		throw new RuntimeException("Metode nesteHandling ikke implementert");
+//		throw new RuntimeException("Metode nesteHandling ikke implementert");
 	}
 
 	/**
 	 * Metoden spiller et kort. Den sjekker at spiller har kortet. Dersom det er
 	 * tilfelle, fjernes kortet fra spilleren og legges til til-bunken. Metoden
-	 * nulltiller også antall ganger spilleren har trukket kort.
+	 * nullstiller også antall ganger spilleren har trukket kort.
 	 * 
 	 * @param spiller
 	 *            den som spiller.
@@ -270,9 +280,15 @@ public class Spill {
 	 */
 	public boolean leggnedKort(ISpiller spiller, Kort kort) {
 		
-		// TODO
+		if ((spiller.getHand().har(kort)))	{
+			spiller.fjernKort(kort);
+			bunkeTil.leggTil(kort);
+			return true;
+		}
+		return false;
 		
-		throw new RuntimeException("Metode leggnedKort ikke implementert");
+		
+//		throw new RuntimeException("Metode leggnedKort ikke implementert");
 	}
 
 	/**
@@ -284,9 +300,9 @@ public class Spill {
 	 */
 	public void forbiSpiller(ISpiller spiller) {
 		
-		// TODO
+		spiller.setAntallTrekk(0);
 		
-		throw new RuntimeException("Metode forbiSpiller ikke implementert");
+//		throw new RuntimeException("Metode forbiSpiller ikke implementert");
 	}
 
 	/**

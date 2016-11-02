@@ -72,10 +72,13 @@ public abstract class KortSamling {
 	 */
 	public void leggTilAlle() {
 		// Hint: Kortfarge.values() gir en tabell med alle kortfarger	
+		int start = 0;
 		for (int i = 0; i < Kortfarge.values().length; i++)	{
 			for (int j = 0; j < MAKS_KORT_FARGE; j ++)	{
-				samling[j] = new Kort(Kortfarge.values()[i],j);
+				samling[start + j] = new Kort(Kortfarge.values()[i],j);
+				forsteledig++;
 			}
+			start = start + MAKS_KORT_FARGE;
 		}
 		
 //		throw new RuntimeException("Metode leggTilAlle ikke implementert");
