@@ -39,20 +39,35 @@ public class FirstFitSpiller extends Spiller {
 
 		// kort som kan spilles
 		Kort kort = null;
-
+		
+		Handling handling = null;
 		/* first-fit strategi */
 		
 		// finn det forste kort p� handen som kan spilles (legges ned)
 		// Hint: klassen Regler har en metode som gitt en kort sjekker om det kan legges ned
 		
-		// TODO
-		
+		ArrayList<Kort> lovlige = new ArrayList<Kort>();
+		for (Kort k : h) {
+			if (Regler.kanLeggeNed(k, topp)) {
+				lovlige.add(k);
+			}
+		}
+		if (!lovlige.isEmpty()) {
+			kort = lovlige.get(0);
+			handling = new Handling(HandlingsType.LEGGNED, kort);
+		}
+		else if (getAntallTrekk() < Regler.maksTrekk()) {
+			handling = new Handling(HandlingsType.TREKK, null);
+		} else {
+			handling = new Handling(HandlingsType.FORBI, null);
+			setAntallTrekk(0);
+		}
+		return handling;		
 		// Hint: konstruer et handlingsobjekt som beskiver hva spilleren vil gj�re
 		// se klassen RandomSpiller som implementerer en Random spiller
 		
-		Handling handling = null;
 		
 		// TODO
-		throw new RuntimeException("Metode nesteHandling ikke implementert");
+//		throw new RuntimeException("Metode nesteHandling ikke implementert");
 	}
 }

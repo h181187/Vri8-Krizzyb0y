@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public abstract class KortSamling {
 
-	public static final int MAKS_KORT_FARGE = 3;
+	public static final int MAKS_KORT_FARGE = 13;
 	private final int MAKS_KORT = 4 * MAKS_KORT_FARGE;
 
 	// tabell for representasjon av samling av kort
@@ -75,7 +75,7 @@ public abstract class KortSamling {
 		int start = 0;
 		for (int i = 0; i < Kortfarge.values().length; i++)	{
 			for (int j = 0; j < MAKS_KORT_FARGE; j ++)	{
-				samling[start + j] = new Kort(Kortfarge.values()[i],j);
+				samling[start + j] = new Kort(Kortfarge.values()[i],(j + 1));
 				forsteledig++;
 			}
 			start = start + MAKS_KORT_FARGE;
@@ -112,7 +112,7 @@ public abstract class KortSamling {
 	}
 
 	/**
-	 * Ser pÃ‚ siste kortet i samlinga.
+	 * Ser på siste kortet i samlinga.
 	 * 
 	 * @return siste kortet i samlinga, men det blir ikke fjernet.
 	 */
@@ -131,9 +131,13 @@ public abstract class KortSamling {
 	 */
 	public Kort taSiste() {
 		
-		Kort siste = samling[forsteledig - 1];
-		samling[forsteledig -1] = null;
-		forsteledig--;
+		Kort siste = null;
+		if (forsteledig !=0)	{
+			siste = samling [forsteledig - 1];
+			samling[forsteledig - 1] = null;
+			forsteledig--;
+			return siste;
+		}
 		return siste;
 		
 //		throw new RuntimeException("Metode taSiste ikke implementert");
@@ -158,7 +162,7 @@ public abstract class KortSamling {
 	}
 
 	/**
-	 * Fjernar et kort frÃ‚ samlinga. Dersom kortet ikke finnest i samlinga,
+	 * Fjernar et kort frå samlinga. Dersom kortet ikke finnest i samlinga,
 	 * skjer ingenting.
 	 * 
 	 * @param kort
@@ -168,7 +172,7 @@ public abstract class KortSamling {
 	public void fjern(Kort kort) {
 		// Hint: finn forst ut hvor kortet er i samlingen hvis det finnes 
 		for (int i = 0; i < forsteledig; i++) {
-			if ( samling[i] == kort) {
+			if (samling[i] == kort) {
 				samling[i] = samling[forsteledig-1];
 				forsteledig--;
 			}
@@ -176,7 +180,6 @@ public abstract class KortSamling {
 		
 		// Hint: fjern kortet - men husk kortet kan sitte pï¿½ en plass i midten
 		
-		// TODO
 		
 //		throw new RuntimeException("Metode fjernKort ikke implementert");
 	}
@@ -187,7 +190,7 @@ public abstract class KortSamling {
 	public void stokk() {
 		// Hint: en mulighet er bruk av klassen Random for å generere tilfeldige index
 		Random r = new Random();
-		for (int i = 0; i > forsteledig; i++) {
+		for (int i = 0; i < forsteledig; i++) {
 			Kort gammel = samling[i];
 			int index = r.nextInt(forsteledig - i) + 1;
 			samling[i]  = samling[index];

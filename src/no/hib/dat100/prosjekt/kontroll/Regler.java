@@ -4,8 +4,8 @@ import no.hib.dat100.prosjekt.modell.Kort;
 
 public abstract class Regler {
 
-	private final static int ANTALL_KORT_START = 3;
-	private final static int MAKS_TREKK = 1;
+	private final static int ANTALL_KORT_START = 7;
+	private final static int MAKS_TREKK = 3;
 
 	public static boolean kanLeggeNed(Kort kort, Kort topp) {
 		return kort.sammeFarge(topp) || kort.sammeVerdi(topp) || atter(kort);
